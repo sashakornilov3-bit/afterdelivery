@@ -41,7 +41,6 @@ body {
   z-index: 9999;
   padding: 20px;
 }
-
 #password-screen.hidden { display: none; }
 
 .login-card {
@@ -53,68 +52,31 @@ body {
   text-align: center;
   box-shadow: 0 20px 60px rgba(0,0,0,0.3);
 }
-
-.login-card h1 {
-  font-size: 22px;
-  margin-bottom: 8px;
-  color: var(--text);
-}
-
-.login-card p {
-  color: var(--text-light);
-  font-size: 14px;
-  margin-bottom: 32px;
-}
-
+.login-card h1 { font-size: 22px; margin-bottom: 8px; color: var(--text); }
+.login-card p { color: var(--text-light); font-size: 14px; margin-bottom: 32px; }
 .login-card .icon {
-  width: 72px;
-  height: 72px;
+  width: 72px; height: 72px;
   background: linear-gradient(135deg, #667eea, #764ba2);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 24px;
-  font-size: 32px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 24px; font-size: 32px;
 }
-
 .login-card input {
-  width: 100%;
-  padding: 14px 18px;
-  border: 2px solid var(--border);
-  border-radius: 12px;
-  font-size: 16px;
-  outline: none;
-  transition: border-color 0.3s;
-  text-align: center;
-  letter-spacing: 2px;
+  width: 100%; padding: 14px 18px;
+  border: 2px solid var(--border); border-radius: 12px;
+  font-size: 16px; outline: none; transition: border-color 0.3s;
+  text-align: center; letter-spacing: 2px;
 }
-
 .login-card input:focus { border-color: var(--primary); }
-
 .login-card button {
-  width: 100%;
-  padding: 14px;
-  background: var(--primary);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 16px;
+  width: 100%; padding: 14px;
+  background: var(--primary); color: white; border: none; border-radius: 12px;
+  font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 16px;
   transition: background 0.3s, transform 0.2s;
 }
-
 .login-card button:hover { background: var(--primary-dark); }
 .login-card button:active { transform: scale(0.97); }
-
-.login-error {
-  color: var(--danger);
-  font-size: 13px;
-  margin-top: 12px;
-  display: none;
-}
+.login-error { color: var(--danger); font-size: 13px; margin-top: 12px; display: none; }
 
 /* ===== ОСНОВНОЕ ПРИЛОЖЕНИЕ ===== */
 #app { display: none; padding-bottom: 80px; }
@@ -122,264 +84,159 @@ body {
 
 .header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 24px 20px;
-  text-align: center;
+  color: white; padding: 24px 20px; text-align: center;
 }
-
 .header h1 { font-size: 20px; margin-bottom: 4px; }
 .header p { font-size: 13px; opacity: 0.85; }
 
 .stats-bar {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  padding: 16px 20px;
-  margin-top: -20px;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 12px; padding: 16px 20px; margin-top: -20px;
 }
-
 .stat-card {
-  background: var(--card);
-  border-radius: 12px;
-  padding: 14px 10px;
-  text-align: center;
-  box-shadow: var(--shadow);
+  background: var(--card); border-radius: 12px;
+  padding: 14px 10px; text-align: center; box-shadow: var(--shadow);
 }
+.stat-card .num { font-size: 22px; font-weight: 700; color: var(--primary); }
+.stat-card .label { font-size: 11px; color: var(--text-light); margin-top: 4px; }
 
-.stat-card .num {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--primary);
-}
-
-.stat-card .label {
-  font-size: 11px;
-  color: var(--text-light);
-  margin-top: 4px;
-}
-
-/* Навигация */
 .nav-tabs {
-  display: flex;
-  overflow-x: auto;
-  padding: 12px 20px;
-  gap: 8px;
+  display: flex; overflow-x: auto; padding: 12px 20px; gap: 8px;
   -webkit-overflow-scrolling: touch;
 }
-
 .nav-tabs::-webkit-scrollbar { display: none; }
-
 .nav-tab {
-  padding: 10px 18px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 500;
-  white-space: nowrap;
-  cursor: pointer;
-  background: var(--card);
-  border: 1px solid var(--border);
-  color: var(--text-light);
+  padding: 10px 18px; border-radius: 20px;
+  font-size: 13px; font-weight: 500; white-space: nowrap; cursor: pointer;
+  background: var(--card); border: 1px solid var(--border); color: var(--text-light);
   transition: all 0.3s;
 }
+.nav-tab.active { background: var(--primary); color: white; border-color: var(--primary); }
 
-.nav-tab.active {
-  background: var(--primary);
-  color: white;
-  border-color: var(--primary);
-}
-
-/* Секции */
 .section { display: none; padding: 0 20px 20px; }
 .section.active { display: block; }
-
 .section-title {
-  font-size: 18px;
-  font-weight: 700;
-  margin: 16px 0 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  font-size: 18px; font-weight: 700; margin: 16px 0 12px;
+  display: flex; align-items: center; gap: 8px;
 }
 
 /* Карточки упражнений */
 .exercise-card {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 18px;
-  margin-bottom: 12px;
-  box-shadow: var(--shadow);
+  background: var(--card); border-radius: var(--radius);
+  padding: 18px; margin-bottom: 12px; box-shadow: var(--shadow);
   border-left: 4px solid var(--success);
 }
-
 .exercise-card.warning { border-left-color: var(--warning); }
 .exercise-card.danger { border-left-color: var(--danger); }
 
 .exercise-card h3 {
-  font-size: 15px;
-  margin-bottom: 6px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  font-size: 15px; margin-bottom: 6px;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
 }
-
-.exercise-card .dose {
-  font-size: 12px;
-  color: var(--text-light);
-  margin-bottom: 8px;
-}
-
-.exercise-card .reason {
-  font-size: 13px;
-  color: var(--text);
-  line-height: 1.5;
-}
+.exercise-card .dose { font-size: 12px; color: var(--text-light); margin-bottom: 8px; font-weight: 500;}
+.exercise-card .reason { font-size: 13px; color: var(--text); line-height: 1.5; }
 
 .badge {
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: 12px;
-  font-size: 11px;
-  font-weight: 600;
+  display: inline-block; padding: 3px 10px; border-radius: 12px;
+  font-size: 11px; font-weight: 600;
 }
-
 .badge-green { background: #E8F5E9; color: #2E7D32; }
 .badge-orange { background: #FFF3E0; color: #E65100; }
 .badge-red { background: #FFEBEE; color: #C62828; }
-.badge-blue { background: #E3F2FD; color: #1565C0; }
+
+/* ТЕХНИКА ВЫПОЛНЕНИЯ (Аккордеон) */
+.technique-toggle {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 12px; padding: 8px 14px;
+  background: #F0F4F8; color: var(--primary);
+  border-radius: 10px; font-size: 13px; font-weight: 600;
+  cursor: pointer; border: none; transition: all 0.2s;
+}
+.technique-toggle:hover { background: #E2E8F0; }
+.technique-toggle.active { background: var(--primary); color: white; }
+
+.technique-content {
+  display: none; margin-top: 12px; padding: 16px;
+  background: #F8FAFC; border-radius: 12px;
+  border-left: 3px solid var(--primary);
+  animation: fadeIn 0.3s ease;
+}
+.technique-content.visible { display: block; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+.technique-content h4 {
+  font-size: 12px; color: var(--primary); margin-bottom: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;
+}
+.technique-content ul { list-style: none; padding: 0; }
+.technique-content li {
+  font-size: 13px; color: var(--text); margin-bottom: 8px;
+  padding-left: 18px; position: relative; line-height: 1.5;
+}
+.technique-content li::before {
+  content: '•'; position: absolute; left: 0;
+  color: var(--primary); font-weight: bold; font-size: 16px;
+}
+.technique-content li.warning-text { color: var(--danger); font-weight: 500; }
+.technique-content li.warning-text::before { content: '⚠'; color: var(--warning); }
 
 /* Этапы */
 .stage-card {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 20px;
-  margin-bottom: 16px;
-  box-shadow: var(--shadow);
-  position: relative;
-  overflow: hidden;
+  background: var(--card); border-radius: var(--radius);
+  padding: 20px; margin-bottom: 16px; box-shadow: var(--shadow);
+  position: relative; overflow: hidden;
 }
-
-.stage-card::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 4px;
-  background: var(--primary);
-}
-
+.stage-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--primary); }
 .stage-card.current::before { background: var(--success); }
 .stage-card.current { border: 2px solid var(--success); }
-
-.stage-num {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--primary);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
+.stage-num { font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
 .stage-card h3 { font-size: 16px; margin: 6px 0; }
 .stage-card .period { font-size: 13px; color: var(--text-light); margin-bottom: 10px; }
 .stage-card .content-list { font-size: 13px; }
 .stage-card .content-list li { margin-bottom: 4px; }
-.stage-card .criteria {
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px solid var(--border);
-  font-size: 12px;
-  color: var(--text-light);
-}
+.stage-card .criteria { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-light); }
 
 /* Красные флаги */
 .red-flag {
-  background: #FFF5F5;
-  border: 1px solid #FED7D7;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 10px;
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
+  background: #FFF5F5; border: 1px solid #FED7D7; border-radius: 12px;
+  padding: 16px; margin-bottom: 10px; display: flex; gap: 12px; align-items: flex-start;
 }
-
 .red-flag .flag-icon {
-  width: 36px;
-  height: 36px;
-  background: var(--danger);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 18px;
-  flex-shrink: 0;
+  width: 36px; height: 36px; background: var(--danger); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 18px; flex-shrink: 0; font-weight: bold;
 }
-
 .red-flag h4 { font-size: 14px; margin-bottom: 4px; }
 .red-flag p { font-size: 12px; color: var(--text-light); }
 
 /* Специалисты */
 .doc-card {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 18px;
-  margin-bottom: 12px;
-  box-shadow: var(--shadow);
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
+  background: var(--card); border-radius: var(--radius);
+  padding: 18px; margin-bottom: 12px; box-shadow: var(--shadow);
+  display: flex; gap: 14px; align-items: flex-start;
 }
-
 .doc-avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+  width: 48px; height: 48px; border-radius: 50%;
   background: linear-gradient(135deg, #667eea, #764ba2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 20px;
-  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 20px; flex-shrink: 0;
 }
-
 .doc-card h4 { font-size: 15px; margin-bottom: 4px; }
 .doc-card .freq { font-size: 12px; color: var(--primary); font-weight: 600; }
 .doc-card .tasks { font-size: 12px; color: var(--text-light); margin-top: 6px; }
 
-/* Контекст пациентки */
-.context-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.context-item {
-  background: var(--card);
-  border-radius: 12px;
-  padding: 14px;
-  box-shadow: var(--shadow);
-}
-
+/* Контекст */
+.context-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.context-item { background: var(--card); border-radius: 12px; padding: 14px; box-shadow: var(--shadow); }
 .context-item .label { font-size: 11px; color: var(--text-light); }
 .context-item .value { font-size: 14px; font-weight: 600; margin-top: 4px; }
 
-/* Футер */
-.footer {
-  text-align: center;
-  padding: 24px 20px;
-  font-size: 12px;
-  color: var(--text-light);
-  border-top: 1px solid var(--border);
-  margin-top: 20px;
-}
-
+.footer { text-align: center; padding: 24px 20px; font-size: 12px; color: var(--text-light); border-top: 1px solid var(--border); margin-top: 20px; }
 .footer a { color: var(--primary); text-decoration: none; }
 
-/* Адаптивность */
 @media (min-width: 768px) {
-  .stats-bar { max-width: 600px; margin-left: auto; margin-right: auto; }
-  .section { max-width: 700px; margin-left: auto; margin-right: auto; }
+  .stats-bar, .section { max-width: 700px; margin-left: auto; margin-right: auto; }
   .nav-tabs { justify-content: center; }
 }
 </style>
@@ -445,194 +302,322 @@ body {
   <div class="section" id="sec-exercises">
     <h2 class="section-title">✅ Разрешённые упражнения</h2>
 
+    <!-- 1. Диафрагмальное дыхание -->
     <div class="exercise-card">
       <h3>Диафрагмальное дыхание <span class="badge badge-green">Подтверждено</span></h3>
       <div class="dose">Ежедневно, 3–5 подходов по 10 циклов</div>
       <div class="reason">Раннее начало ускоряет восстановление тонуса на 40%. Базовый элемент синхронизации диафрагмы и тазового дна.</div>
+      <button class="technique-toggle" onclick="toggleTechnique(this)">📖 Техника выполнения</button>
+      <div class="technique-content">
+        <h4>Пошаговая инструкция</h4>
+        <ul>
+          <li>Положение: лёжа на спине, ноги согнуты в коленях, стопы на полу; либо сидя с прямой спиной</li>
+          <li>Одна ладонь на груди, другая на животе ниже рёбер</li>
+          <li>Вдох через нос 3–4 секунды: живот расширяется, грудная клетка остаётся неподвижной</li>
+          <li>Выдох через сомкнутые губы 5–6 секунд: живот мягко втягивается без усилия</li>
+          <li>Плечи и шея полностью расслаблены, без подъёма надплечий на вдохе</li>
+          <li>Не допускать задержки дыхания между фазами</li>
+          <li class="warning-text">При появлении головокружения прекратить и восстановить обычный ритм дыхания</li>
+        </ul>
+      </div>
     </div>
 
+    <!-- 2. Дыхание с активацией ТД -->
     <div class="exercise-card">
       <h3>Дыхание с активацией тазового дна <span class="badge badge-green">Подтверждено</span></h3>
       <div class="dose">Ежедневно, 3 подхода по 8–10 повторений</div>
       <div class="reason">Cochrane 2019: женщины, выполнявшие комплекс 3 раза в день, в 6 раз реже страдали недержанием через год. Критично при наличии недержания.</div>
+      <button class="technique-toggle" onclick="toggleTechnique(this)">📖 Техника выполнения</button>
+      <div class="technique-content">
+        <h4>Пошаговая инструкция</h4>
+        <ul>
+          <li>Исходное положение: лёжа на спине, колени согнуты, таз в нейтральном положении</li>
+          <li>Вдох: диафрагма опускается, живот расширяется, тазовое дно расслаблено</li>
+          <li>Выдох: одновременно мягкое подтягивание промежности вверх и внутрь (ощущение «лифт поднимается»)</li>
+          <li>Удержание сокращения 2–3 секунды на конце выдоха, затем полное расслабление</li>
+          <li>Не втягивать ягодицы, не сжимать бёдра, не напрягать пресс</li>
+          <li>Фаза расслабления равна или длиннее фазы сокращения</li>
+          <li>Выполнять строго на выдохе; на вдохе промежность полностью отпускается</li>
+        </ul>
+      </div>
     </div>
 
+    <!-- 3. Кегеля -->
     <div class="exercise-card">
       <h3>Упражнения Кегеля (облегчённая версия) <span class="badge badge-green">Подтверждено</span></h3>
       <div class="dose">3 подхода по 10 сокращений, удержание 3–5 сек</div>
       <div class="reason">56% излечения против 6% в контроле. Только на выдохе, без натуживания.</div>
+      <button class="technique-toggle" onclick="toggleTechnique(this)">📖 Техника выполнения</button>
+      <div class="technique-content">
+        <h4>Пошаговая инструкция</h4>
+        <ul>
+          <li>Положение: лёжа на спине или сидя на стуле с прямой спиной</li>
+          <li>Сокращение: сжать мышцы, окружающие влагалище и анус, как при попытке остановить мочеиспускание</li>
+          <li>Удержание 3–5 секунд, затем полное расслабление 5–8 секунд</li>
+          <li>Не задерживать дыхание; выдох в момент сокращения</li>
+          <li>Не вовлекать мышцы живота, ягодиц, внутренней поверхности бёдер</li>
+          <li class="warning-text">Не выполнять во время мочеиспускания (только для первичной идентификации мышцы)</li>
+          <li>Между подходами перерыв 30–60 секунд</li>
+          <li>При невозможности удержать 3 секунды начать с 1–2 секунд и наращивать постепенно</li>
+        </ul>
+      </div>
     </div>
 
+    <!-- 4. БОС -->
     <div class="exercise-card">
       <h3>БОС-терапия <span class="badge badge-green">Подтверждено</span></h3>
       <div class="dose">Курс 10–15 сеансов, 2–3 раза в неделю</div>
       <div class="reason">Золотой стандарт при послеродовом недержании. Электромиографическая обратная связь обеспечивает объективный контроль.</div>
+      <button class="technique-toggle" onclick="toggleTechnique(this)">📖 Особенности проведения</button>
+      <div class="technique-content">
+        <h4>Протокол процедуры</h4>
+        <ul>
+          <li>Проводится исключительно под контролем физиотерапевта-гинеколога</li>
+          <li>Вагинальный датчик регистрирует силу и длительность сокращения в реальном времени</li>
+          <li>Пациентка видит кривую сокращения на экране и корректирует усилие</li>
+          <li>Сеанс включает чередование фаз сокращения и расслабления</li>
+          <li>Домашние задания между сеансами: повторение освоенных паттернов</li>
+          <li class="warning-text">Противопоказания: острые инфекции мочевыводящих путей, менструация</li>
+        </ul>
+      </div>
     </div>
 
+    <!-- 5. Изометрия -->
     <div class="exercise-card">
       <h3>Изометрия поперечной мышцы живота <span class="badge badge-green">Подтверждено</span></h3>
       <div class="dose">3 подхода по 8–10 повт., удержание 5 сек</div>
       <div class="reason">Активация мышечного корсета без повышения внутрибрюшного давления. Техника «втягивание под рёбра на выдохе».</div>
+      <button class="technique-toggle" onclick="toggleTechnique(this)">📖 Техника выполнения</button>
+      <div class="technique-content">
+        <h4>Пошаговая инструкция</h4>
+        <ul>
+          <li>Исходное положение: стоя на четвереньках, ладони строго под плечами, колени под тазобедренными суставами</li>
+          <li>Спина в нейтральном положении, без прогиба и округления</li>
+          <li>Вдох: живот мягко расширяется вниз</li>
+          <li>Выдох: мягкое подтягивание пупка к позвоночнику и «под рёбра», амплитуда минимальная</li>
+          <li>Удержание 5 секунд при спокойном дыхании (не задерживать)</li>
+          <li>Не округлять спину, не втягивать с усилием, не втягивать рёбра</li>
+          <li>Ощущение: лёгкое «застёгивание корсета», а не сдавливание</li>
+          <li class="warning-text">При дискомфорте в области рубца немедленно прекратить</li>
+        </ul>
+      </div>
     </div>
 
+    <!-- 6. Вакуум -->
     <div class="exercise-card warning">
       <h3>Вакуум (облегчённая версия) <span class="badge badge-orange">С оговоркой</span></h3>
       <div class="dose">2–3 подхода по 5–8 повторений</div>
       <div class="reason">Допустимо при отсутствии дискомфорта в области рубца. Введение обосновано только после освоения базовых навыков управления внутрибрюшным давлением.</div>
+      <button class="technique-toggle" onclick="toggleTechnique(this)">📖 Техника выполнения</button>
+      <div class="technique-content">
+        <h4>Пошаговая инструкция</h4>
+        <ul>
+          <li>Вводить не ранее чем через 2 недели после уверенного освоения изометрии поперечной мышцы</li>
+          <li>Положение: стоя на четвереньках или лёжа на спине с согнутыми коленями</li>
+          <li>Полный выдох через рот, затем мягкое втягивание живота под рёбра</li>
+          <li class="warning-text">НЕ выполнять глубокое втягивание; амплитуда не более 50% от максимальной</li>
+          <li>Удержание 3–5 секунд, затем плавное расслабление на вдохе</li>
+          <li class="warning-text">Категорически не выполнять на задержке дыхания с натуживанием</li>
+          <li class="warning-text">При любом тянущем ощущении в рубце или промежности — прекратить</li>
+          <li>Не выполнять при ощущении тяжести в тазу или позыве к мочеиспусканию</li>
+        </ul>
+      </div>
     </div>
 
+    <!-- 7. Ягодичный мост -->
     <div class="exercise-card">
       <h3>Ягодичный мост без веса <span class="badge badge-green">Подтверждено</span></h3>
       <div class="dose">3 подхода по 12–15 повторений</div>
       <div class="reason">Безопасное укрепление задней цепи. Исключает осевую нагрузку. Не прогибать поясницу.</div>
+      <button class="technique-toggle" onclick="toggleTechnique(this)">📖 Техника выполнения</button>
+      <div class="technique-content">
+        <h4>Пошаговая инструкция</h4>
+        <ul>
+          <li>Положение: лёжа на спине, ноги согнуты, стопы на ширине таза, руки вдоль тела</li>
+          <li>Выдох: подъём таза вверх до прямой линии от плеч до коленей</li>
+          <li>В верхней точке сжать ягодицы, удержание 1–2 секунды</li>
+          <li class="warning-text">НЕ допускать прогиба в пояснице: рёбра не должны расходиться</li>
+          <li>Вдох: плавное опускание таза, позвонок за позвонком</li>
+          <li>Давление через пятки, не через носки</li>
+          <li>Не отталкиваться руками от пола</li>
+          <li>При ощущении давления в промежности снизить амплитуду подъёма</li>
+        </ul>
+      </div>
     </div>
 
+    <!-- 8. Отведение ноги -->
     <div class="exercise-card">
       <h3>Отведение ноги назад (на четвереньках) <span class="badge badge-green">Подтверждено</span></h3>
       <div class="dose">3 подхода по 10–12 повт. на каждую ногу</div>
       <div class="reason">Изолированная активация ягодичных мышц. Медленное движение без рывков.</div>
+      <button class="technique-toggle" onclick="toggleTechnique(this)">📖 Техника выполнения</button>
+      <div class="technique-content">
+        <h4>Пошаговая инструкция</h4>
+        <ul>
+          <li>Исходное положение: на четвереньках, спина нейтральная, взгляд в пол</li>
+          <li>Выдох: медленное отведение согнутой ноги (угол 90° в колене) назад и вверх</li>
+          <li>Подъём до уровня таза, не выше; без прогиба в пояснице</li>
+          <li>Вдох: плавное возвращение в исходное положение</li>
+          <li>Темп: 2 секунды подъём, 1 секунда пауза, 2 секунды опускание</li>
+          <li>Таз остаётся неподвижным, без перекоса</li>
+          <li>Не разгибать ногу полностью в верхней точке</li>
+          <li>При потере стабильности таза уменьшить амплитуду</li>
+        </ul>
+      </div>
     </div>
 
+    <!-- 9. Растяжка грудных -->
     <div class="exercise-card">
       <h3>Растяжка грудных мышц <span class="badge badge-green">Подтверждено</span></h3>
       <div class="dose">2–3 подхода по 20–30 секунд</div>
       <div class="reason">Коррекция осанки при ношении ребёнка. Улучшает дыхательную функцию.</div>
+      <button class="technique-toggle" onclick="toggleTechnique(this)">📖 Техника выполнения</button>
+      <div class="technique-content">
+        <h4>Пошаговая инструкция</h4>
+        <ul>
+          <li>Встать в дверном проёме, предплечье и ладонь на косяке, локоть на уровне плеча</li>
+          <li>Мягкий шаг вперёд противоположной ногой до ощущения лёгкого растяжения</li>
+          <li>Угол в плечевом суставе не более 90° (без экстремальных углов)</li>
+          <li>Удержание 20–30 секунд, дыхание ровное, без задержки</li>
+          <li>Не допускать боли; ощущение должно быть на уровне 4–5 из 10</li>
+          <li>Повторить на другую сторону</li>
+          <li>Альтернатива: руки в замок за спиной, мягкое отведение плеч назад</li>
+        </ul>
+      </div>
     </div>
 
+    <!-- 10. Кошка-корова -->
     <div class="exercise-card">
       <h3>Кошка-корова (малая амплитуда) <span class="badge badge-green">Подтверждено</span></h3>
       <div class="dose">2 подхода по 10 повторений</div>
       <div class="reason">Мягкая мобилизация позвоночника. Избегать глубокого прогиба из-за гормональной гипермобильности.</div>
+      <button class="technique-toggle" onclick="toggleTechnique(this)">📖 Техника выполнения</button>
+      <div class="technique-content">
+        <h4>Пошаговая инструкция</h4>
+        <ul>
+          <li>Положение: на четвереньках, ладони под плечами, колени под тазом</li>
+          <li>Вдох («корова»): мягкое округление спины вверх, подбородок к груди — амплитуда 50%</li>
+          <li>Выдох («кошка»): лёгкое прогибание, взгляд вперёд — НЕ запрокидывать голову</li>
+          <li class="warning-text">Амплитуда строго уменьшена: не доводить до крайних положений</li>
+          <li>Движение плавное, волнообразное, без рывков</li>
+          <li class="warning-text">Избегать глубокого прогиба в пояснице (риск при действии релаксина)</li>
+          <li>Темп: 3 секунды на каждую фазу</li>
+        </ul>
+      </div>
     </div>
 
+    <!-- 11. Растяжка ЗПБ -->
     <div class="exercise-card">
       <h3>Растяжка задней поверхности бедра <span class="badge badge-green">Подтверждено</span></h3>
       <div class="dose">2 подхода по 20–30 сек на каждую ногу</div>
       <div class="reason">Положение лёжа с полотенцем исключает нагрузку на тазовое дно. Не тянуть через боль.</div>
+      <button class="technique-toggle" onclick="toggleTechnique(this)">📖 Техника выполнения</button>
+      <div class="technique-content">
+        <h4>Пошаговая инструкция</h4>
+        <ul>
+          <li>Положение: лёжа на спине, одна нога прямая на полу, другая поднята</li>
+          <li>Полотенце или ремень вокруг стопы поднятой ноги</li>
+          <li>Мягкое подтягивание ноги к себе за полотенце до ощущения растяжения</li>
+          <li>Колено поднятой ноги может быть слегка согнуто (не блокировать)</li>
+          <li>Таз прижат к полу, поясница не отрывается</li>
+          <li>Удержание 20–30 секунд, дыхание ровное</li>
+          <li class="warning-text">Не тянуть через боль; ощущение растяжения 4–5 из 10</li>
+          <li>Не выполнять рывковых движений</li>
+        </ul>
+      </div>
     </div>
 
+    <!-- 12. Ходьба -->
     <div class="exercise-card">
       <h3>Ходьба в умеренном темпе <span class="badge badge-green">Подтверждено</span></h3>
       <div class="dose">20–30 мин ежедневно, пульс до 110–120 уд/мин</div>
       <div class="reason">150 мин умеренной аэробной активности в неделю (ACOG). Ограничение пульса критично при гипертиреозе.</div>
+      <button class="technique-toggle" onclick="toggleTechnique(this)">📖 Техника и контроль</button>
+      <div class="technique-content">
+        <h4>Пошаговая инструкция</h4>
+        <ul>
+          <li>Темп: разговорный — возможность говорить без одышки</li>
+          <li>Осанка: плечи расправлены, взгляд вперёд, макушка тянется вверх</li>
+          <li>Шаг средней длины, без широкого вышагивания</li>
+          <li>Руки согнуты в локтях, мягкие махи в такт шагам</li>
+          <li>Контроль пульса: каждые 10 минут или при изменении темпа</li>
+          <li class="warning-text">Пульс не выше 110–120 уд/мин (жёсткое ограничение при гипертиреозе)</li>
+          <li>При пульсе выше 120 замедлить шаг до восстановления</li>
+          <li>Поверхность: ровная, без подъёмов и спусков на начальном этапе</li>
+          <li>Обувь с амортизацией, без каблука</li>
+        </ul>
+      </div>
     </div>
 
+    <!-- 13. Массаж рубца -->
     <div class="exercise-card">
       <h3>Мягкий самомассаж рубца <span class="badge badge-green">Подтверждено</span></h3>
       <div class="dose">Ежедневно, 3–5 минут</div>
       <div class="reason">Профилактика спаек, восстановление проприоцепции. Только при полностью зажившем шве, без давления на сам рубец.</div>
+      <button class="technique-toggle" onclick="toggleTechnique(this)">📖 Техника выполнения</button>
+      <div class="technique-content">
+        <h4>Пошаговая инструкция</h4>
+        <ul>
+          <li>Проводить только после полного заживления наружного шва (отсутствие корочек, мокнутия)</li>
+          <li>Чистые руки, можно использовать гипоаллергенное масло или крем</li>
+          <li>Положение: лёжа на спине, колени согнуты, мышцы живота расслаблены</li>
+          <li>Подушечками пальцев мягко сдвигать кожу вокруг рубца в 4 направлениях: вверх, вниз, вправо, влево</li>
+          <li>Движения: круговые, поглаживающие, лёгкое растяжение ткани</li>
+          <li class="warning-text">НЕ давить на сам рубец, не разминать грубо</li>
+          <li>Начинать с 1–2 см от рубца, постепенно приближаясь</li>
+          <li class="warning-text">При появлении боли, покраснения, выделений — прекратить и обратиться к врачу</li>
+          <li>После массажа: лёгкое поглаживание для расслабления</li>
+        </ul>
+      </div>
     </div>
+
   </div>
 
   <!-- ЗАПРЕТЫ -->
   <div class="section" id="sec-forbidden">
     <h2 class="section-title">🚫 Противопоказания</h2>
-
-    <div class="exercise-card danger">
-      <h3>Скручивания, подъёмы ног <span class="badge badge-red">До 4–6 мес.</span></h3>
-      <div class="reason">Прочность фасциального шва 50–70%. Риск диастаза и микротравм.</div>
-    </div>
-
-    <div class="exercise-card danger">
-      <h3>Планка (фронтальная и боковая) <span class="badge badge-red">До 4 мес.</span></h3>
-      <div class="reason">Статическая осевая нагрузка на не полностью ремоделированную фасцию.</div>
-    </div>
-
-    <div class="exercise-card danger">
-      <h3>Подъёмы корпуса (сит-апы) <span class="badge badge-red">До 6 мес.</span></h3>
-      <div class="reason">Критическое повышение внутрибрюшного давления. Полное ремоделирование фасции — до 2 лет.</div>
-    </div>
-
-    <div class="exercise-card danger">
-      <h3>Бег, прыжки, скакалка <span class="badge badge-red">До 4–6 мес.</span></h3>
-      <div class="reason">Ударная волна повышает внутрибрюшное давление в 3–5 раз. При недержании — абсолютное противопоказание.</div>
-    </div>
-
-    <div class="exercise-card danger">
-      <h3>Становая тяга, приседания с весом <span class="badge badge-red">До 6 мес.</span></h3>
-      <div class="reason">Осевая нагрузка на позвоночник, фасцию и тазовое дно.</div>
-    </div>
-
-    <div class="exercise-card danger">
-      <h3>Подъём тяжестей свыше 5 кг <span class="badge badge-red">До 3–4 мес.</span></h3>
-      <div class="reason">Риск грыжеобразования. Подъём через приседание на выдохе.</div>
-    </div>
-
-    <div class="exercise-card danger">
-      <h3>Кроссфит, ВИИТ, интервальный бег <span class="badge badge-red">До компенсации гипертиреоза</span></h3>
-      <div class="reason">Риск тахиаритмии и сердечной недостаточности при некомпенсированном тиреотоксикозе.</div>
-    </div>
-
-    <div class="exercise-card danger">
-      <h3>Гиперэкстензия с большой амплитудой <span class="badge badge-red">До 4 мес.</span></h3>
-      <div class="reason">Перегрузка поясничного отдела при гормональной гипермобильности связок.</div>
-    </div>
-
-    <div class="exercise-card danger">
-      <h3>Упражнения с натуживанием (Вальсальва) <span class="badge badge-red">Постоянное ограничение</span></h3>
-      <div class="reason">Самое опасное действие для тазового дна и рубца. Все усилия — на выдохе.</div>
-    </div>
-
-    <div class="exercise-card warning">
-      <h3>Плавание (открытые водоёмы) <span class="badge badge-orange">Условно</span></h3>
-      <div class="reason">До разрешения гинеколога. Риск инфекционных осложнений.</div>
-    </div>
-
-    <div class="exercise-card warning">
-      <h3>Велотренажёр, эллипс (высокая инт.) <span class="badge badge-orange">Условно</span></h3>
-      <div class="reason">До 4 мес. При недержании — отложить до устранения дисфункции.</div>
-    </div>
+    <div class="exercise-card danger"><h3>Скручивания, подъёмы ног <span class="badge badge-red">До 4–6 мес.</span></h3><div class="reason">Прочность фасциального шва 50–70%. Риск диастаза и микротравм.</div></div>
+    <div class="exercise-card danger"><h3>Планка (фронтальная и боковая) <span class="badge badge-red">До 4 мес.</span></h3><div class="reason">Статическая осевая нагрузка на не полностью ремоделированную фасцию.</div></div>
+    <div class="exercise-card danger"><h3>Подъёмы корпуса (сит-апы) <span class="badge badge-red">До 6 мес.</span></h3><div class="reason">Критическое повышение внутрибрюшного давления. Полное ремоделирование фасции — до 2 лет.</div></div>
+    <div class="exercise-card danger"><h3>Бег, прыжки, скакалка <span class="badge badge-red">До 4–6 мес.</span></h3><div class="reason">Ударная волна повышает внутрибрюшное давление в 3–5 раз. При недержании — абсолютное противопоказание.</div></div>
+    <div class="exercise-card danger"><h3>Становая тяга, приседания с весом <span class="badge badge-red">До 6 мес.</span></h3><div class="reason">Осевая нагрузка на позвоночник, фасцию и тазовое дно.</div></div>
+    <div class="exercise-card danger"><h3>Подъём тяжестей свыше 5 кг <span class="badge badge-red">До 3–4 мес.</span></h3><div class="reason">Риск грыжеобразования. Подъём через приседание на выдохе.</div></div>
+    <div class="exercise-card danger"><h3>Кроссфит, ВИИТ, интервальный бег <span class="badge badge-red">До компенсации гипертиреоза</span></h3><div class="reason">Риск тахиаритмии и сердечной недостаточности при некомпенсированном тиреотоксикозе.</div></div>
+    <div class="exercise-card danger"><h3>Гиперэкстензия с большой амплитудой <span class="badge badge-red">До 4 мес.</span></h3><div class="reason">Перегрузка поясничного отдела при гормональной гипермобильности связок.</div></div>
+    <div class="exercise-card danger"><h3>Упражнения с натуживанием (Вальсальва) <span class="badge badge-red">Постоянное ограничение</span></h3><div class="reason">Самое опасное действие для тазового дна и рубца. Все усилия — на выдохе.</div></div>
+    <div class="exercise-card warning"><h3>Плавание (открытые водоёмы) <span class="badge badge-orange">Условно</span></h3><div class="reason">До разрешения гинеколога. Риск инфекционных осложнений.</div></div>
+    <div class="exercise-card warning"><h3>Велотренажёр, эллипс (высокая инт.) <span class="badge badge-orange">Условно</span></h3><div class="reason">До 4 мес. При недержании — отложить до устранения дисфункции.</div></div>
   </div>
 
   <!-- ЭТАПЫ -->
   <div class="section" id="sec-stages">
     <h2 class="section-title">📈 Этапы прогрессии</h2>
-
     <div class="stage-card current">
       <div class="stage-num">Этап 1 — Текущий</div>
       <h3>Базовая реабилитация</h3>
       <div class="period">2,5 – 3,5 месяца</div>
-      <ul class="content-list">
-        <li>Дыхательные практики</li>
-        <li>Тазовое дно (Кегеля, БОС)</li>
-        <li>Ходьба 20–30 мин</li>
-        <li>Ягодичный мост, мобильность</li>
-      </ul>
+      <ul class="content-list"><li>Дыхательные практики</li><li>Тазовое дно (Кегеля, БОС)</li><li>Ходьба 20–30 мин</li><li>Ягодичный мост, мобильность</li></ul>
       <div class="criteria">Переход: отсутствие недержания при кашле, безболезненность рубца, стабильный пульс</div>
     </div>
-
     <div class="stage-card">
       <div class="stage-num">Этап 2</div>
       <h3>Стабилизация кора</h3>
       <div class="period">3,5 – 5 месяцев</div>
-      <ul class="content-list">
-        <li>Изометрия кора</li>
-        <li>Пилатес облегчённый</li>
-        <li>Лёгкий велотренажёр</li>
-      </ul>
+      <ul class="content-list"><li>Изометрия кора</li><li>Пилатес облегчённый</li><li>Лёгкий велотренажёр</li></ul>
       <div class="criteria">Переход: нормализация ТТГ, разрешение врача ЛФК, отсутствие дискомфорта</div>
     </div>
-
     <div class="stage-card">
       <div class="stage-num">Этап 3</div>
       <h3>Силовые и плавание</h3>
       <div class="period">5 – 6 месяцев и далее</div>
-      <ul class="content-list">
-        <li>Силовые с минимальным весом</li>
-        <li>Плавание</li>
-        <li>Йога восстановительная</li>
-      </ul>
+      <ul class="content-list"><li>Силовые с минимальным весом</li><li>Плавание</li><li>Йога восстановительная</li></ul>
       <div class="criteria">Переход: оценка урогинеколога, отсутствие диастаза, стабильный эндокринный статус</div>
     </div>
-
     <div class="stage-card">
       <div class="stage-num">Этап 4</div>
       <h3>Возврат к активности</h3>
       <div class="period">После 6 месяцев</div>
-      <ul class="content-list">
-        <li>Постепенное увеличение нагрузки</li>
-        <li>Возврат к привычной активности</li>
-      </ul>
+      <ul class="content-list"><li>Постепенное увеличение нагрузки</li><li>Возврат к привычной активности</li></ul>
       <div class="criteria">Условия: полное разрешение недержания, отсутствие грыж, компенсация гипертиреоза</div>
     </div>
   </div>
@@ -641,90 +626,22 @@ body {
   <div class="section" id="sec-flags">
     <h2 class="section-title">🚨 Красные флаги</h2>
     <p style="font-size:13px;color:var(--text-light);margin-bottom:16px;">При любом из симптомов — немедленно прекратить нагрузку и обратиться к врачу.</p>
-
-    <div class="red-flag">
-      <div class="flag-icon">!</div>
-      <div><h4>Боль в области рубца</h4><p>Возможная причина: микротравма фасциального шва, формирование грыжи. → Хирург, акушер-гинеколог</p></div>
-    </div>
-
-    <div class="red-flag">
-      <div class="flag-icon">!</div>
-      <div><h4>Усиление недержания при нагрузке</h4><p>Перегрузка тазового дна, неправильная техника. → Урогинеколог, физиотерапевт</p></div>
-    </div>
-
-    <div class="red-flag">
-      <div class="flag-icon">!</div>
-      <div><h4>Тахикардия >130 уд/мин, одышка, головокружение</h4><p>Декомпенсация гипертиреоза, сердечно-сосудистая нестабильность. → Эндокринолог, кардиолог</p></div>
-    </div>
-
-    <div class="red-flag">
-      <div class="flag-icon">!</div>
-      <div><h4>Кровянистые или патологические выделения</h4><p>Нарушение заживления, эндометрит. → Акушер-гинеколог</p></div>
-    </div>
-
-    <div class="red-flag">
-      <div class="flag-icon">!</div>
-      <div><h4>Выпячивание в области рубца или белой линии</h4><p>Формирование вентральной грыжи или диастаза. → Хирург</p></div>
-    </div>
+    <div class="red-flag"><div class="flag-icon">!</div><div><h4>Боль в области рубца</h4><p>Возможная причина: микротравма фасциального шва, формирование грыжи. → Хирург, акушер-гинеколог</p></div></div>
+    <div class="red-flag"><div class="flag-icon">!</div><div><h4>Усиление недержания при нагрузке</h4><p>Перегрузка тазового дна, неправильная техника. → Урогинеколог, физиотерапевт</p></div></div>
+    <div class="red-flag"><div class="flag-icon">!</div><div><h4>Тахикардия >130 уд/мин, одышка, головокружение</h4><p>Декомпенсация гипертиреоза, сердечно-сосудистая нестабильность. → Эндокринолог, кардиолог</p></div></div>
+    <div class="red-flag"><div class="flag-icon">!</div><div><h4>Кровянистые или патологические выделения</h4><p>Нарушение заживления, эндометрит. → Акушер-гинеколог</p></div></div>
+    <div class="red-flag"><div class="flag-icon">!</div><div><h4>Выпячивание в области рубца или белой линии</h4><p>Формирование вентральной грыжи или диастаза. → Хирург</p></div></div>
   </div>
 
   <!-- ВРАЧИ -->
   <div class="section" id="sec-doctors">
     <h2 class="section-title">👩‍⚕️ Команда специалистов</h2>
-
-    <div class="doc-card">
-      <div class="doc-avatar">🩺</div>
-      <div>
-        <h4>Акушер-гинеколог</h4>
-        <div class="freq">1 раз в 1–2 мес.</div>
-        <div class="tasks">Оценка заживления рубца (УЗИ), исключение эндометрита и истмоцеле, разрешение на водные нагрузки</div>
-      </div>
-    </div>
-
-    <div class="doc-card">
-      <div class="doc-avatar">💊</div>
-      <div>
-        <h4>Эндокринолог</h4>
-        <div class="freq">Каждые 4–6 недель до эутиреоза</div>
-        <div class="tasks">Контроль ТТГ, свТ4, свТ3. Оценка влияния на метаболизм коллагена. Разрешение на повышение интенсивности</div>
-      </div>
-    </div>
-
-    <div class="doc-card">
-      <div class="doc-avatar">🏥</div>
-      <div>
-        <h4>Урогинеколог</h4>
-        <div class="freq">Первичная оценка + контроль через 3 мес.</div>
-        <div class="tasks">Оценка силы мышц тазового дна, назначение БОС-терапии, допуск к ударным и силовым нагрузкам</div>
-      </div>
-    </div>
-
-    <div class="doc-card">
-      <div class="doc-avatar">🏋️</div>
-      <div>
-        <h4>Врач ЛФК / Реабилитолог</h4>
-        <div class="freq">Еженедельно (этап 1), далее 1 раз в 2 нед.</div>
-        <div class="tasks">Оценка диастаза, контроль техники, прогрессия нагрузки, допуск к новым упражнениям</div>
-      </div>
-    </div>
-
-    <div class="doc-card">
-      <div class="doc-avatar">⚡</div>
-      <div>
-        <h4>Физиотерапевт-гинеколог</h4>
-        <div class="freq">По назначению (курс БОС)</div>
-        <div class="tasks">БОС-терапия, электростимуляция, контроль техники упражнений тазового дна</div>
-      </div>
-    </div>
-
-    <div class="doc-card">
-      <div class="doc-avatar">❤️</div>
-      <div>
-        <h4>Кардиолог</h4>
-        <div class="freq">При тахикардии, перед этапом 2</div>
-        <div class="tasks">ЭКГ, оценка рисков при гипертиреозе, допуск к кардионагрузкам</div>
-      </div>
-    </div>
+    <div class="doc-card"><div class="doc-avatar">🩺</div><div><h4>Акушер-гинеколог</h4><div class="freq">1 раз в 1–2 мес.</div><div class="tasks">Оценка заживления рубца (УЗИ), исключение эндометрита и истмоцеле, разрешение на водные нагрузки</div></div></div>
+    <div class="doc-card"><div class="doc-avatar">💊</div><div><h4>Эндокринолог</h4><div class="freq">Каждые 4–6 недель до эутиреоза</div><div class="tasks">Контроль ТТГ, свТ4, свТ3. Оценка влияния на метаболизм коллагена. Разрешение на повышение интенсивности</div></div></div>
+    <div class="doc-card"><div class="doc-avatar">🏥</div><div><h4>Урогинеколог</h4><div class="freq">Первичная оценка + контроль через 3 мес.</div><div class="tasks">Оценка силы мышц тазового дна, назначение БОС-терапии, допуск к ударным и силовым нагрузкам</div></div></div>
+    <div class="doc-card"><div class="doc-avatar">🏋️</div><div><h4>Врач ЛФК / Реабилитолог</h4><div class="freq">Еженедельно (этап 1), далее 1 раз в 2 нед.</div><div class="tasks">Оценка диастаза, контроль техники, прогрессия нагрузки, допуск к новым упражнениям</div></div></div>
+    <div class="doc-card"><div class="doc-avatar">⚡</div><div><h4>Физиотерапевт-гинеколог</h4><div class="freq">По назначению (курс БОС)</div><div class="tasks">БОС-терапия, электростимуляция, контроль техники упражнений тазового дна</div></div></div>
+    <div class="doc-card"><div class="doc-avatar">❤️</div><div><h4>Кардиолог</h4><div class="freq">При тахикардии, перед этапом 2</div><div class="tasks">ЭКГ, оценка рисков при гипертиреозе, допуск к кардионагрузкам</div></div></div>
   </div>
 
   <div class="footer">
@@ -735,7 +652,7 @@ body {
 </div>
 
 <script>
-// ===== ПАРОЛЬ (измените на свой) =====
+// ===== ПАРОЛЬ =====
 const APP_PASSWORD = "vasilisa";
 
 function checkPassword() {
@@ -751,12 +668,10 @@ function checkPassword() {
   }
 }
 
-// Enter для входа
 document.getElementById('pass-input').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') checkPassword();
 });
 
-// Проверка сессии
 if (sessionStorage.getItem('auth') === 'true') {
   document.getElementById('password-screen').classList.add('hidden');
   document.getElementById('app').classList.add('visible');
@@ -771,6 +686,14 @@ document.querySelectorAll('.nav-tab').forEach(tab => {
     document.getElementById('sec-' + this.dataset.tab).classList.add('active');
   });
 });
+
+// ===== АККОРДЕОН ТЕХНИКИ =====
+function toggleTechnique(btn) {
+  const content = btn.nextElementSibling;
+  content.classList.toggle('visible');
+  btn.classList.toggle('active');
+  btn.innerHTML = content.classList.contains('visible') ? '📖 Скрыть технику' : '📖 Техника выполнения';
+}
 </script>
 </body>
 </html>
