@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Реабилитация после КС</title>
+<style>
+:root {
+  --primary: #6C63FF;
+  --primary-dark: #5A52D5;
+  --success: #4CAF50;
+  --warning: #FF9800;
+  --danger: #F44336;
+  --bg: #F5F7FA;
+  --card: #FFFFFF;
+  --text: #2D3748;
+  --text-light: #718096;
+  --border: #E2E8F0;
+  --radius: 16px;
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ===== ЭКРАН ПАРОЛЯ ===== */
+#password-screen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+#password-screen.hidden { display: none; }
+
+.login-card {
+  background: white;
+  border-radius: 24px;
+  padding: 48px 36px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.login-card h1 {
+  font-size: 22px;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.login-card p {
+  color: var(--text-light);
+  font-size: 14px;
+  margin-bottom: 32px;
+}
+
+.login-card .icon {
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 32px;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.login-card input:focus { border-color: var(--primary); }
+
+.login-card button {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.login-card button:hover { background: var(--primary-dark); }
+.login-card button:active { transform: scale(0.97); }
+
+.login-error {
+  color: var(--danger);
+  font-size: 13px;
+  margin-top: 12px;
+  display: none;
+}
+
+/* ===== ОСНОВНОЕ ПРИЛОЖЕНИЕ ===== */
+#app { display: none; padding-bottom: 80px; }
+#app.visible { display: block; }
+
+.header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 24px 20px;
+  text-align: center;
+}
+
+.header h1 { font-size: 20px; margin-bottom: 4px; }
+.header p { font-size: 13px; opacity: 0.85; }
+
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 16px 20px;
+  margin-top: -20px;
+}
+
+.stat-card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 14px 10px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.stat-card .num {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.stat-card .label {
+  font-size: 11px;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+/* Навигация */
+.nav-tabs {
+  display: flex;
+  overflow-x: auto;
+  padding: 12px 20px;
+  gap: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.nav-tabs::-webkit-scrollbar { display: none; }
+
+.nav-tab {
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text-light);
+  transition: all 0.3s;
+}
+
+.nav-tab.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* Секции */
+.section { display: none; padding: 0 20px 20px; }
+.section.active { display: block; }
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 16px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Карточки упражнений */
+.exercise-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--success);
+}
+
+.exercise-card.warning { border-left-color: var(--warning); }
+.exercise-card.danger { border-left-color: var(--danger); }
+
+.exercise-card h3 {
+  font-size: 15px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.exercise-card .dose {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-bottom: 8px;
+}
+
+.exercise-card .reason {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.badge-green { background: #E8F5E9; color: #2E7D32; }
+.badge-orange { background: #FFF3E0; color: #E65100; }
+.badge-red { background: #FFEBEE; color: #C62828; }
+.badge-blue { background: #E3F2FD; color: #1565C0; }
+
+/* Этапы */
+.stage-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.stage-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--primary);
+}
+
+.stage-card.current::before { background: var(--success); }
+.stage-card.current { border: 2px solid var(--success); }
+
+.stage-num {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.stage-card h3 { font-size: 16px; margin: 6px 0; }
+.stage-card .period { font-size: 13px; color: var(--text-light); margin-bottom: 10px; }
+.stage-card .content-list { font-size: 13px; }
+.stage-card .content-list li { margin-bottom: 4px; }
+.stage-card .criteria {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+/* Красные флаги */
+.red-flag {
+  background: #FFF5F5;
+  border: 1px solid #FED7D7;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.red-flag .flag-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--danger);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.red-flag h4 { font-size: 14px; margin-bottom: 4px; }
+.red-flag p { font-size: 12px; color: var(--text-light); }
+
+/* Специалисты */
+.doc-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.doc-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.doc-card h4 { font-size: 15px; margin-bottom: 4px; }
+.doc-card .freq { font-size: 12px; color: var(--primary); font-weight: 600; }
+.doc-card .tasks { font-size: 12px; color: var(--text-light); margin-top: 6px; }
+
+/* Контекст пациентки */
+.context-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.context-item {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: var(--shadow);
+}
+
+.context-item .label { font-size: 11px; color: var(--text-light); }
+.context-item .value { font-size: 14px; font-weight: 600; margin-top: 4px; }
+
+/* Футер */
+.footer {
+  text-align: center;
+  padding: 24px 20px;
+  font-size: 12px;
+  color: var(--text-light);
+  border-top: 1px solid var(--border);
+  margin-top: 20px;
+}
+
+.footer a { color: var(--primary); text-decoration: none; }
+
+/* Адаптивность */
+@media (min-width: 768px) {
+  .stats-bar { max-width: 600px; margin-left: auto; margin-right: auto; }
+  .section { max-width: 700px; margin-left: auto; margin-right: auto; }
+  .nav-tabs { justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ЭКРАН ПАРОЛЯ -->
+<div id="password-screen">
+  <div class="login-card">
+    <div class="icon">🔐</div>
+    <h1>Реабилитация после КС</h1>
+    <p>Введите пароль для доступа к протоколу</p>
+    <input type="password" id="pass-input" placeholder="••••••••" autocomplete="off">
+    <button onclick="checkPassword()">Войти</button>
+    <div class="login-error" id="login-error">Неверный пароль. Попробуйте ещё раз.</div>
+  </div>
+</div>
+
+<!-- ОСНОВНОЕ ПРИЛОЖЕНИЕ -->
+<div id="app">
+  <div class="header">
+    <h1>Реабилитация после кесарева сечения</h1>
+    <p>Верифицированный протокол • 2,5 месяца после операции</p>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-card"><div class="num">13/13</div><div class="label">Упражнений подтверждено</div></div>
+    <div class="stat-card"><div class="num">11/11</div><div class="label">Противопоказаний</div></div>
+    <div class="stat-card"><div class="num">4/4</div><div class="label">Условных допуска</div></div>
+  </div>
+
+  <div class="nav-tabs">
+    <div class="nav-tab active" data-tab="context">Контекст</div>
+    <div class="nav-tab" data-tab="exercises">Упражнения</div>
+    <div class="nav-tab" data-tab="forbidden">Запреты</div>
+    <div class="nav-tab" data-tab="stages">Этапы</div>
+    <div class="nav-tab" data-tab="flags">Красные флаги</div>
+    <div class="nav-tab" data-tab="doctors">Врачи</div>
+  </div>
+
+  <!-- КОНТЕКСТ -->
+  <div class="section active" id="sec-context">
+    <h2 class="section-title">📋 Контекст пациентки</h2>
+    <div class="context-grid">
+      <div class="context-item"><div class="label">Срок после КС</div><div class="value">2,5 месяца</div></div>
+      <div class="context-item"><div class="label">Гипертиреоз</div><div class="value">Без терапии</div></div>
+      <div class="context-item"><div class="label">Недержание мочи</div><div class="value">Присутствует</div></div>
+      <div class="context-item"><div class="label">Грыжа</div><div class="value">Отсутствует</div></div>
+      <div class="context-item"><div class="label">Болевой синдром</div><div class="value">Отсутствует</div></div>
+      <div class="context-item"><div class="label">Прочность рубца</div><div class="value">~50–70%</div></div>
+    </div>
+    <div class="exercise-card warning">
+      <h3>⚠️ Критический фактор: гипертиреоз</h3>
+      <div class="reason">Даже при нормальном пульсе покоя скрытый тиреотоксикоз провоцирует аритмию при пиковой нагрузке. Тиреоидные гормоны влияют на метаболизм коллагена и скорость заживления рубца. Исключить высокоинтенсивное кардио до подтверждения эутиреоза. Пульс при нагрузке не выше 110–120 уд/мин.</div>
+    </div>
+    <div class="exercise-card warning">
+      <h3>⚠️ Приоритет: недержание мочи</h3>
+      <div class="reason">Дисфункция нейрофасциальной сети тазового дна. Любое повышение внутрибрюшного давления усугубляет симптоматику. Приоритет: БОС-терапия, диафрагмальное дыхание, Кегеля. Исключить прыжки, бег, подъём тяжестей до устранения.</div>
+    </div>
+  </div>
+
+  <!-- УПРАЖНЕНИЯ -->
+  <div class="section" id="sec-exercises">
+    <h2 class="section-title">✅ Разрешённые упражнения</h2>
+
+    <div class="exercise-card">
+      <h3>Диафрагмальное дыхание <span class="badge badge-green">Подтверждено</span></h3>
+      <div class="dose">Ежедневно, 3–5 подходов по 10 циклов</div>
+      <div class="reason">Раннее начало ускоряет восстановление тонуса на 40%. Базовый элемент синхронизации диафрагмы и тазового дна.</div>
+    </div>
+
+    <div class="exercise-card">
+      <h3>Дыхание с активацией тазового дна <span class="badge badge-green">Подтверждено</span></h3>
+      <div class="dose">Ежедневно, 3 подхода по 8–10 повторений</div>
+      <div class="reason">Cochrane 2019: женщины, выполнявшие комплекс 3 раза в день, в 6 раз реже страдали недержанием через год. Критично при наличии недержания.</div>
+    </div>
+
+    <div class="exercise-card">
+      <h3>Упражнения Кегеля (облегчённая версия) <span class="badge badge-green">Подтверждено</span></h3>
+      <div class="dose">3 подхода по 10 сокращений, удержание 3–5 сек</div>
+      <div class="reason">56% излечения против 6% в контроле. Только на выдохе, без натуживания.</div>
+    </div>
+
+    <div class="exercise-card">
+      <h3>БОС-терапия <span class="badge badge-green">Подтверждено</span></h3>
+      <div class="dose">Курс 10–15 сеансов, 2–3 раза в неделю</div>
+      <div class="reason">Золотой стандарт при послеродовом недержании. Электромиографическая обратная связь обеспечивает объективный контроль.</div>
+    </div>
+
+    <div class="exercise-card">
+      <h3>Изометрия поперечной мышцы живота <span class="badge badge-green">Подтверждено</span></h3>
+      <div class="dose">3 подхода по 8–10 повт., удержание 5 сек</div>
+      <div class="reason">Активация мышечного корсета без повышения внутрибрюшного давления. Техника «втягивание под рёбра на выдохе».</div>
+    </div>
+
+    <div class="exercise-card warning">
+      <h3>Вакуум (облегчённая версия) <span class="badge badge-orange">С оговоркой</span></h3>
+      <div class="dose">2–3 подхода по 5–8 повторений</div>
+      <div class="reason">Допустимо при отсутствии дискомфорта в области рубца. Введение обосновано только после освоения базовых навыков управления внутрибрюшным давлением.</div>
+    </div>
+
+    <div class="exercise-card">
+      <h3>Ягодичный мост без веса <span class="badge badge-green">Подтверждено</span></h3>
+      <div class="dose">3 подхода по 12–15 повторений</div>
+      <div class="reason">Безопасное укрепление задней цепи. Исключает осевую нагрузку. Не прогибать поясницу.</div>
+    </div>
+
+    <div class="exercise-card">
+      <h3>Отведение ноги назад (на четвереньках) <span class="badge badge-green">Подтверждено</span></h3>
+      <div class="dose">3 подхода по 10–12 повт. на каждую ногу</div>
+      <div class="reason">Изолированная активация ягодичных мышц. Медленное движение без рывков.</div>
+    </div>
+
+    <div class="exercise-card">
+      <h3>Растяжка грудных мышц <span class="badge badge-green">Подтверждено</span></h3>
+      <div class="dose">2–3 подхода по 20–30 секунд</div>
+      <div class="reason">Коррекция осанки при ношении ребёнка. Улучшает дыхательную функцию.</div>
+    </div>
+
+    <div class="exercise-card">
+      <h3>Кошка-корова (малая амплитуда) <span class="badge badge-green">Подтверждено</span></h3>
+      <div class="dose">2 подхода по 10 повторений</div>
+      <div class="reason">Мягкая мобилизация позвоночника. Избегать глубокого прогиба из-за гормональной гипермобильности.</div>
+    </div>
+
+    <div class="exercise-card">
+      <h3>Растяжка задней поверхности бедра <span class="badge badge-green">Подтверждено</span></h3>
+      <div class="dose">2 подхода по 20–30 сек на каждую ногу</div>
+      <div class="reason">Положение лёжа с полотенцем исключает нагрузку на тазовое дно. Не тянуть через боль.</div>
+    </div>
+
+    <div class="exercise-card">
+      <h3>Ходьба в умеренном темпе <span class="badge badge-green">Подтверждено</span></h3>
+      <div class="dose">20–30 мин ежедневно, пульс до 110–120 уд/мин</div>
+      <div class="reason">150 мин умеренной аэробной активности в неделю (ACOG). Ограничение пульса критично при гипертиреозе.</div>
+    </div>
+
+    <div class="exercise-card">
+      <h3>Мягкий самомассаж рубца <span class="badge badge-green">Подтверждено</span></h3>
+      <div class="dose">Ежедневно, 3–5 минут</div>
+      <div class="reason">Профилактика спаек, восстановление проприоцепции. Только при полностью зажившем шве, без давления на сам рубец.</div>
+    </div>
+  </div>
+
+  <!-- ЗАПРЕТЫ -->
+  <div class="section" id="sec-forbidden">
+    <h2 class="section-title">🚫 Противопоказания</h2>
+
+    <div class="exercise-card danger">
+      <h3>Скручивания, подъёмы ног <span class="badge badge-red">До 4–6 мес.</span></h3>
+      <div class="reason">Прочность фасциального шва 50–70%. Риск диастаза и микротравм.</div>
+    </div>
+
+    <div class="exercise-card danger">
+      <h3>Планка (фронтальная и боковая) <span class="badge badge-red">До 4 мес.</span></h3>
+      <div class="reason">Статическая осевая нагрузка на не полностью ремоделированную фасцию.</div>
+    </div>
+
+    <div class="exercise-card danger">
+      <h3>Подъёмы корпуса (сит-апы) <span class="badge badge-red">До 6 мес.</span></h3>
+      <div class="reason">Критическое повышение внутрибрюшного давления. Полное ремоделирование фасции — до 2 лет.</div>
+    </div>
+
+    <div class="exercise-card danger">
+      <h3>Бег, прыжки, скакалка <span class="badge badge-red">До 4–6 мес.</span></h3>
+      <div class="reason">Ударная волна повышает внутрибрюшное давление в 3–5 раз. При недержании — абсолютное противопоказание.</div>
+    </div>
+
+    <div class="exercise-card danger">
+      <h3>Становая тяга, приседания с весом <span class="badge badge-red">До 6 мес.</span></h3>
+      <div class="reason">Осевая нагрузка на позвоночник, фасцию и тазовое дно.</div>
+    </div>
+
+    <div class="exercise-card danger">
+      <h3>Подъём тяжестей свыше 5 кг <span class="badge badge-red">До 3–4 мес.</span></h3>
+      <div class="reason">Риск грыжеобразования. Подъём через приседание на выдохе.</div>
+    </div>
+
+    <div class="exercise-card danger">
+      <h3>Кроссфит, ВИИТ, интервальный бег <span class="badge badge-red">До компенсации гипертиреоза</span></h3>
+      <div class="reason">Риск тахиаритмии и сердечной недостаточности при некомпенсированном тиреотоксикозе.</div>
+    </div>
+
+    <div class="exercise-card danger">
+      <h3>Гиперэкстензия с большой амплитудой <span class="badge badge-red">До 4 мес.</span></h3>
+      <div class="reason">Перегрузка поясничного отдела при гормональной гипермобильности связок.</div>
+    </div>
+
+    <div class="exercise-card danger">
+      <h3>Упражнения с натуживанием (Вальсальва) <span class="badge badge-red">Постоянное ограничение</span></h3>
+      <div class="reason">Самое опасное действие для тазового дна и рубца. Все усилия — на выдохе.</div>
+    </div>
+
+    <div class="exercise-card warning">
+      <h3>Плавание (открытые водоёмы) <span class="badge badge-orange">Условно</span></h3>
+      <div class="reason">До разрешения гинеколога. Риск инфекционных осложнений.</div>
+    </div>
+
+    <div class="exercise-card warning">
+      <h3>Велотренажёр, эллипс (высокая инт.) <span class="badge badge-orange">Условно</span></h3>
+      <div class="reason">До 4 мес. При недержании — отложить до устранения дисфункции.</div>
+    </div>
+  </div>
+
+  <!-- ЭТАПЫ -->
+  <div class="section" id="sec-stages">
+    <h2 class="section-title">📈 Этапы прогрессии</h2>
+
+    <div class="stage-card current">
+      <div class="stage-num">Этап 1 — Текущий</div>
+      <h3>Базовая реабилитация</h3>
+      <div class="period">2,5 – 3,5 месяца</div>
+      <ul class="content-list">
+        <li>Дыхательные практики</li>
+        <li>Тазовое дно (Кегеля, БОС)</li>
+        <li>Ходьба 20–30 мин</li>
+        <li>Ягодичный мост, мобильность</li>
+      </ul>
+      <div class="criteria">Переход: отсутствие недержания при кашле, безболезненность рубца, стабильный пульс</div>
+    </div>
+
+    <div class="stage-card">
+      <div class="stage-num">Этап 2</div>
+      <h3>Стабилизация кора</h3>
+      <div class="period">3,5 – 5 месяцев</div>
+      <ul class="content-list">
+        <li>Изометрия кора</li>
+        <li>Пилатес облегчённый</li>
+        <li>Лёгкий велотренажёр</li>
+      </ul>
+      <div class="criteria">Переход: нормализация ТТГ, разрешение врача ЛФК, отсутствие дискомфорта</div>
+    </div>
+
+    <div class="stage-card">
+      <div class="stage-num">Этап 3</div>
+      <h3>Силовые и плавание</h3>
+      <div class="period">5 – 6 месяцев и далее</div>
+      <ul class="content-list">
+        <li>Силовые с минимальным весом</li>
+        <li>Плавание</li>
+        <li>Йога восстановительная</li>
+      </ul>
+      <div class="criteria">Переход: оценка урогинеколога, отсутствие диастаза, стабильный эндокринный статус</div>
+    </div>
+
+    <div class="stage-card">
+      <div class="stage-num">Этап 4</div>
+      <h3>Возврат к активности</h3>
+      <div class="period">После 6 месяцев</div>
+      <ul class="content-list">
+        <li>Постепенное увеличение нагрузки</li>
+        <li>Возврат к привычной активности</li>
+      </ul>
+      <div class="criteria">Условия: полное разрешение недержания, отсутствие грыж, компенсация гипертиреоза</div>
+    </div>
+  </div>
+
+  <!-- КРАСНЫЕ ФЛАГИ -->
+  <div class="section" id="sec-flags">
+    <h2 class="section-title">🚨 Красные флаги</h2>
+    <p style="font-size:13px;color:var(--text-light);margin-bottom:16px;">При любом из симптомов — немедленно прекратить нагрузку и обратиться к врачу.</p>
+
+    <div class="red-flag">
+      <div class="flag-icon">!</div>
+      <div><h4>Боль в области рубца</h4><p>Возможная причина: микротравма фасциального шва, формирование грыжи. → Хирург, акушер-гинеколог</p></div>
+    </div>
+
+    <div class="red-flag">
+      <div class="flag-icon">!</div>
+      <div><h4>Усиление недержания при нагрузке</h4><p>Перегрузка тазового дна, неправильная техника. → Урогинеколог, физиотерапевт</p></div>
+    </div>
+
+    <div class="red-flag">
+      <div class="flag-icon">!</div>
+      <div><h4>Тахикардия >130 уд/мин, одышка, головокружение</h4><p>Декомпенсация гипертиреоза, сердечно-сосудистая нестабильность. → Эндокринолог, кардиолог</p></div>
+    </div>
+
+    <div class="red-flag">
+      <div class="flag-icon">!</div>
+      <div><h4>Кровянистые или патологические выделения</h4><p>Нарушение заживления, эндометрит. → Акушер-гинеколог</p></div>
+    </div>
+
+    <div class="red-flag">
+      <div class="flag-icon">!</div>
+      <div><h4>Выпячивание в области рубца или белой линии</h4><p>Формирование вентральной грыжи или диастаза. → Хирург</p></div>
+    </div>
+  </div>
+
+  <!-- ВРАЧИ -->
+  <div class="section" id="sec-doctors">
+    <h2 class="section-title">👩‍⚕️ Команда специалистов</h2>
+
+    <div class="doc-card">
+      <div class="doc-avatar">🩺</div>
+      <div>
+        <h4>Акушер-гинеколог</h4>
+        <div class="freq">1 раз в 1–2 мес.</div>
+        <div class="tasks">Оценка заживления рубца (УЗИ), исключение эндометрита и истмоцеле, разрешение на водные нагрузки</div>
+      </div>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-avatar">💊</div>
+      <div>
+        <h4>Эндокринолог</h4>
+        <div class="freq">Каждые 4–6 недель до эутиреоза</div>
+        <div class="tasks">Контроль ТТГ, свТ4, свТ3. Оценка влияния на метаболизм коллагена. Разрешение на повышение интенсивности</div>
+      </div>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-avatar">🏥</div>
+      <div>
+        <h4>Урогинеколог</h4>
+        <div class="freq">Первичная оценка + контроль через 3 мес.</div>
+        <div class="tasks">Оценка силы мышц тазового дна, назначение БОС-терапии, допуск к ударным и силовым нагрузкам</div>
+      </div>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-avatar">🏋️</div>
+      <div>
+        <h4>Врач ЛФК / Реабилитолог</h4>
+        <div class="freq">Еженедельно (этап 1), далее 1 раз в 2 нед.</div>
+        <div class="tasks">Оценка диастаза, контроль техники, прогрессия нагрузки, допуск к новым упражнениям</div>
+      </div>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-avatar">⚡</div>
+      <div>
+        <h4>Физиотерапевт-гинеколог</h4>
+        <div class="freq">По назначению (курс БОС)</div>
+        <div class="tasks">БОС-терапия, электростимуляция, контроль техники упражнений тазового дна</div>
+      </div>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-avatar">❤️</div>
+      <div>
+        <h4>Кардиолог</h4>
+        <div class="freq">При тахикардии, перед этапом 2</div>
+        <div class="tasks">ЭКГ, оценка рисков при гипертиреозе, допуск к кардионагрузкам</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Источники: ACOG 2020 • Mottola 2018 • Cochrane 2018/2019 • КР РФ 2016 • ATA 2017</p>
+    <p style="margin-top:8px;">⚠️ Не заменяет консультацию врача</p>
+    <p style="margin-top:8px;"><a href="https://afterdelivery.netlify.app" target="_blank">afterdelivery.netlify.app</a></p>
+  </div>
+</div>
+
+<script>
+// ===== ПАРОЛЬ (измените на свой) =====
+const APP_PASSWORD = "vasilisa";
+
+function checkPassword() {
+  const input = document.getElementById('pass-input').value;
+  if (input === APP_PASSWORD) {
+    document.getElementById('password-screen').classList.add('hidden');
+    document.getElementById('app').classList.add('visible');
+    sessionStorage.setItem('auth', 'true');
+  } else {
+    document.getElementById('login-error').style.display = 'block';
+    document.getElementById('pass-input').value = '';
+    document.getElementById('pass-input').focus();
+  }
+}
+
+// Enter для входа
+document.getElementById('pass-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') checkPassword();
+});
+
+// Проверка сессии
+if (sessionStorage.getItem('auth') === 'true') {
+  document.getElementById('password-screen').classList.add('hidden');
+  document.getElementById('app').classList.add('visible');
+}
+
+// ===== НАВИГАЦИЯ =====
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    this.classList.add('active');
+    document.getElementById('sec-' + this.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
