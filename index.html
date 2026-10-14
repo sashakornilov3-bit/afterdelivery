@@ -232,12 +232,141 @@ body {
 .context-item .label { font-size: 11px; color: var(--text-light); }
 .context-item .value { font-size: 14px; font-weight: 600; margin-top: 4px; }
 
+/* ===== ПИТАНИЕ: доп. стили ===== */
+.nutrition-stats {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 16px;
+}
+.nutrition-stat {
+  background: var(--card); border-radius: 12px; padding: 14px; box-shadow: var(--shadow);
+  text-align: center;
+}
+.nutrition-stat .icon { font-size: 24px; margin-bottom: 4px; }
+.nutrition-stat .num { font-size: 18px; font-weight: 700; color: var(--primary); }
+.nutrition-stat .label { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+
+.module-card {
+  background: var(--card); border-radius: var(--radius);
+  padding: 18px; margin-bottom: 12px; box-shadow: var(--shadow);
+  border-left: 4px solid var(--success);
+}
+.module-card h3 {
+  font-size: 15px; margin-bottom: 6px;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.module-card .dose { font-size: 12px; color: var(--text-light); margin-bottom: 8px; font-weight: 500; }
+.module-card .reason { font-size: 13px; color: var(--text); line-height: 1.5; }
+
+.nutrition-table {
+  width: 100%; border-collapse: collapse; margin-top: 12px;
+  font-size: 12px; background: white; border-radius: 10px; overflow: hidden;
+}
+.nutrition-table thead { background: #F0F4F8; }
+.nutrition-table th {
+  padding: 8px 6px; text-align: left; font-weight: 600; color: var(--primary);
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.3px;
+  border-bottom: 2px solid var(--border);
+}
+.nutrition-table td {
+  padding: 8px 6px; border-bottom: 1px solid var(--border); color: var(--text);
+  vertical-align: top;
+}
+.nutrition-table tr:last-child td { border-bottom: none; }
+.nutrition-table tr:hover { background: #F8FAFC; }
+.nutrition-table .accent-cell { color: var(--primary); font-weight: 500; font-size: 11px; }
+
+.meal-timeline {
+  background: #F8FAFC; border-radius: 12px; padding: 16px; margin-top: 12px;
+  border-left: 3px solid var(--primary);
+}
+.meal-item {
+  display: flex; gap: 12px; padding: 10px 0;
+  border-bottom: 1px dashed var(--border);
+}
+.meal-item:last-child { border-bottom: none; }
+.meal-time {
+  font-size: 12px; font-weight: 700; color: var(--primary);
+  min-width: 48px; padding-top: 2px;
+}
+.meal-info { flex: 1; font-size: 13px; color: var(--text); line-height: 1.5; }
+.meal-info .meal-title { font-weight: 600; margin-bottom: 2px; }
+.meal-info .meal-desc { color: var(--text-light); font-size: 12px; }
+.meal-kcal {
+  font-size: 12px; font-weight: 700; color: var(--success);
+  white-space: nowrap; padding-top: 2px;
+}
+
+.meal-summary {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;
+  margin-top: 12px; padding: 12px; background: white; border-radius: 10px;
+  font-size: 12px;
+}
+.meal-summary div { text-align: center; }
+.meal-summary .val { font-weight: 700; color: var(--primary); font-size: 14px; }
+.meal-summary .lbl { color: var(--text-light); font-size: 10px; text-transform: uppercase; }
+
+.principle-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 16px; }
+
+.forbidden-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 16px; }
+.forbidden-item {
+  background: #FFF5F5; border: 1px solid #FED7D7; border-radius: 12px;
+  padding: 14px; display: flex; gap: 12px; align-items: flex-start;
+}
+.forbidden-item .f-icon {
+  width: 32px; height: 32px; background: var(--danger); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 16px; flex-shrink: 0;
+}
+.forbidden-item h4 { font-size: 13px; margin-bottom: 2px; color: var(--text); }
+.forbidden-item p { font-size: 12px; color: var(--text-light); line-height: 1.4; }
+
+.drink-list {
+  background: var(--card); border-radius: var(--radius); padding: 16px;
+  box-shadow: var(--shadow); margin-bottom: 12px;
+}
+.drink-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 0; border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.drink-item:last-child { border-bottom: none; }
+.drink-item .name { font-weight: 500; color: var(--text); }
+.drink-item .vol { color: var(--primary); font-weight: 600; font-size: 12px; }
+.drink-item .note { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+
+.conditions-box {
+  background: #FFF8E1; border: 1px solid #FFE082; border-radius: 12px;
+  padding: 16px; margin-top: 16px;
+}
+.conditions-box h4 {
+  font-size: 13px; color: #E65100; margin-bottom: 10px;
+  display: flex; align-items: center; gap: 6px;
+}
+.conditions-box ul { list-style: none; padding: 0; }
+.conditions-box li {
+  font-size: 12px; color: var(--text); margin-bottom: 6px;
+  padding-left: 18px; position: relative; line-height: 1.5;
+}
+.conditions-box li::before {
+  content: '✓'; position: absolute; left: 0;
+  color: var(--success); font-weight: bold;
+}
+
+.sources-box {
+  background: #F0F4F8; border-radius: 10px; padding: 12px;
+  margin-top: 12px; font-size: 11px; color: var(--text-light);
+  line-height: 1.5;
+}
+
 .footer { text-align: center; padding: 24px 20px; font-size: 12px; color: var(--text-light); border-top: 1px solid var(--border); margin-top: 20px; }
 .footer a { color: var(--primary); text-decoration: none; }
 
 @media (min-width: 768px) {
   .stats-bar, .section { max-width: 700px; margin-left: auto; margin-right: auto; }
   .nav-tabs { justify-content: center; }
+  .nutrition-stats { grid-template-columns: repeat(4, 1fr); }
+  .meal-summary { grid-template-columns: repeat(4, 1fr); }
+  .nutrition-table { font-size: 13px; }
+  .nutrition-table th, .nutrition-table td { padding: 10px 8px; }
 }
 </style>
 </head>
@@ -275,6 +404,7 @@ body {
     <div class="nav-tab" data-tab="stages">Этапы</div>
     <div class="nav-tab" data-tab="flags">Красные флаги</div>
     <div class="nav-tab" data-tab="doctors">Врачи</div>
+    <div class="nav-tab" data-tab="nutrition">Питание</div>
   </div>
 
   <!-- КОНТЕКСТ -->
@@ -644,6 +774,313 @@ body {
     <div class="doc-card"><div class="doc-avatar">❤️</div><div><h4>Кардиолог</h4><div class="freq">При тахикардии, перед этапом 2</div><div class="tasks">ЭКГ, оценка рисков при гипертиреозе, допуск к кардионагрузкам</div></div></div>
   </div>
 
+  <!-- ПИТАНИЕ -->
+  <div class="section" id="sec-nutrition">
+    <h2 class="section-title">🍽️ Питание — Модульный конструктор рациона</h2>
+    <p style="font-size:13px;color:var(--text-light);margin-bottom:16px;">Персонализированный рацион для кормящей матери с гипертиреозом и недержанием мочи. 2,5 месяца после КС. Все продукты доступны в розничной сети РФ.</p>
+
+    <div class="nutrition-stats">
+      <div class="nutrition-stat"><div class="icon">📦</div><div class="num">6</div><div class="label">Модулей продуктов</div></div>
+      <div class="nutrition-stat"><div class="icon">🔥</div><div class="num">~2200</div><div class="label">ккал / сутки</div></div>
+      <div class="nutrition-stat"><div class="icon">🥩</div><div class="num">110–125 г</div><div class="label">Белок / сутки</div></div>
+      <div class="nutrition-stat"><div class="icon">🤱</div><div class="num">+400</div><div class="label">ккал на лактацию</div></div>
+    </div>
+
+    <h3 style="font-size:15px;font-weight:700;margin:20px 0 12px;">⚠️ Критические принципы питания</h3>
+    <div class="principle-grid">
+      <div class="exercise-card warning">
+        <h3>Гипертиреоз</h3>
+        <div class="reason">Ограничение йода и стимуляторов. Исключить концентрированные источники йода (морская капуста, морепродукты, йодированная соль). Избегать кофеина. Приоритет — нежирный белок.</div>
+      </div>
+      <div class="exercise-card warning">
+        <h3>Лактация</h3>
+        <div class="reason">+300–500 ккал, 2–2,5 л жидкости, белок ≥110 г/сутки (≥60 г животного), дробное питание 5–6 раз.</div>
+      </div>
+      <div class="exercise-card warning">
+        <h3>Недержание мочи</h3>
+        <div class="reason">Исключить раздражители мочевого пузыря (кофеин, цитрусовые, острые специи, газировка, алкоголь, подсластители). Приоритет — клетчатка для профилактики запоров.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:15px;font-weight:700;margin:20px 0 12px;">🚫 Запрещённые продукты</h3>
+    <div class="forbidden-grid">
+      <div class="forbidden-item"><div class="f-icon">☕</div><div><h4>Стимуляторы</h4><p>Кофе (включая безкофеиновый), чёрный и зелёный чай, какао, шоколад (>50%), энергетики, кола. Усиливают тахикардию, стимулируют детрузор.</p></div></div>
+      <div class="forbidden-item"><div class="f-icon">🍊</div><div><h4>Кислотные раздражители</h4><p>Апельсины, лимоны, грейпфруты, мандарины и соки. Томаты, ананас, клюква, кислые ягоды.</p></div></div>
+      <div class="forbidden-item"><div class="f-icon">🌶️</div><div><h4>Острые специи и маринады</h4><p>Перец чили, горчица, хрен, уксус, соевый соус, острые азиатские соусы, аджика.</p></div></div>
+      <div class="forbidden-item"><div class="f-icon">🐟</div><div><h4>Концентрированные источники йода</h4><p>Морская капуста (ламинария), нори, вакаме. Креветки, кальмары, мидии, крабовые палочки. Йодированная соль. Рыбий жир в капсулах.</p></div></div>
+      <div class="forbidden-item"><div class="f-icon">🍷</div><div><h4>Алкоголь и газировка</h4><p>Любой алкоголь. Газированная вода, лимонады, квас.</p></div></div>
+      <div class="forbidden-item"><div class="f-icon">🍰</div><div><h4>Сахар и подсластители</h4><p>Рафинированный сахар в больших количествах, торты, пирожные, мёд в избытке. Аспартам, сахарин, сукралоза.</p></div></div>
+      <div class="forbidden-item"><div class="f-icon">🥩</div><div><h4>Тяжёлые и жирные продукты</h4><p>Жирная свинина, утка, гусь, сало, копчёности, колбасы. Маргарин, кулинарный жир, жарка во фритюре.</p></div></div>
+      <div class="forbidden-item"><div class="f-icon">🥫</div><div><h4>Промышленные продукты с добавками</h4><p>Хлеб с йодатом калия, консервы с глутаматом, полуфабрикаты с соей, фастфуд.</p></div></div>
+    </div>
+
+    <h3 style="font-size:15px;font-weight:700;margin:20px 0 12px;">🌾 Модули рациона</h3>
+
+    <!-- Модуль A -->
+    <div class="module-card">
+      <h3>🌾 Модуль A — Крупы и злаки <span class="badge badge-green">Основа энергии</span></h3>
+      <div class="reason">Источник сложных углеводов для компенсации ускоренного метаболизма. Клетчатка предотвращает запоры. Выбирать без добавок сахара.</div>
+      <button class="technique-toggle" onclick="toggleTechnique(this)">📖 Состав и порции</button>
+      <div class="technique-content">
+        <table class="nutrition-table">
+          <thead><tr><th>Продукт</th><th>Порция (сух.)</th><th>Ккал</th><th>Белок</th><th>Акцент</th></tr></thead>
+          <tbody>
+            <tr><td>Гречка</td><td>50–70 г</td><td>170–240</td><td>6–9 г</td><td class="accent-cell">Железо, магний, рутин</td></tr>
+            <tr><td>Овсянка (геркулес)</td><td>50–70 г</td><td>180–250</td><td>6–8 г</td><td class="accent-cell">Бета-глюкан, B1</td></tr>
+            <tr><td>Рис круглозёрный</td><td>50–70 г</td><td>175–245</td><td>4–5 г</td><td class="accent-cell">Лёгкое усвоение</td></tr>
+            <tr><td>Пшено</td><td>50–70 г</td><td>170–240</td><td>6–8 г</td><td class="accent-cell">Магний, фосфор</td></tr>
+            <tr><td>Перловка</td><td>50–70 г</td><td>165–230</td><td>5–7 г</td><td class="accent-cell">Клетчатка, селен</td></tr>
+            <tr><td>Макароны тв. сортов</td><td>50–70 г</td><td>175–245</td><td>6–8 г</td><td class="accent-cell">Углеводы, B</td></tr>
+          </tbody>
+        </table>
+        <ul style="margin-top:12px;">
+          <li>Приготовление: варка на воде или разбавленном молоке (1:1)</li>
+          <li>Без сахара — добавить банан или запечённое яблоко</li>
+          <li>Масло: 1 ч.л. подсолнечного/оливкового</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Модуль B -->
+    <div class="module-card">
+      <h3>🍗 Модуль B — Мясо и птица <span class="badge badge-green">Белковая основа</span></h3>
+      <div class="reason">Главный источник белка для лактации и компенсации катаболизма. Только нежирные сорта. Способы: варка, тушение, запекание, паровые котлеты.</div>
+      <button class="technique-toggle" onclick="toggleTechnique(this)">📖 Состав и порции</button>
+      <div class="technique-content">
+        <table class="nutrition-table">
+          <thead><tr><th>Продукт</th><th>Порция (гот.)</th><th>Ккал</th><th>Белок</th><th>Акцент</th></tr></thead>
+          <tbody>
+            <tr><td>Куриная грудка</td><td>100–120 г</td><td>130–160</td><td>24–30 г</td><td class="accent-cell">Ниацин, селен</td></tr>
+            <tr><td>Индейка (филе)</td><td>100–120 г</td><td>120–150</td><td>23–29 г</td><td class="accent-cell">B6, фосфор, триптофан</td></tr>
+            <tr><td>Кролик</td><td>100–120 г</td><td>140–170</td><td>22–26 г</td><td class="accent-cell">Железо, гипоаллергенность</td></tr>
+            <tr><td>Говядина (вырезка)</td><td>100–120 г</td><td>180–220</td><td>22–26 г</td><td class="accent-cell">Гемовое железо, B12, цинк</td></tr>
+            <tr><td>Паровой омлет (2 яйца)</td><td>100–120 г</td><td>140–160</td><td>12–14 г</td><td class="accent-cell">Холин, витамин D</td></tr>
+          </tbody>
+        </table>
+        <ul style="margin-top:12px;">
+          <li>Мясо/птица — ежедневно</li>
+          <li>Говядина — 3–4 раза в неделю</li>
+          <li>Яйца — до 2 шт./день</li>
+          <li class="warning-text">Бульоны на мясе не использовать (йод переходит в отвар)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Модуль C -->
+    <div class="module-card">
+      <h3>🐟 Модуль C — Рыба <span class="badge badge-green">Нежирные сорта</span></h3>
+      <div class="reason">Нежирная белая рыба — безопасный источник белка с низким содержанием йода. Жирная рыба (лосось) — 1 раз в неделю для омега-3. Избегать морепродуктов и солёной рыбы.</div>
+      <button class="technique-toggle" onclick="toggleTechnique(this)">📖 Состав и порции</button>
+      <div class="technique-content">
+        <table class="nutrition-table">
+          <thead><tr><th>Продукт</th><th>Порция (гот.)</th><th>Ккал</th><th>Белок</th><th>Акцент</th></tr></thead>
+          <tbody>
+            <tr><td>Треска / минтай / хек</td><td>100–120 г</td><td>90–120</td><td>18–22 г</td><td class="accent-cell">Белок, селен, минимум йода</td></tr>
+            <tr><td>Судак</td><td>100–120 г</td><td>100–130</td><td>19–23 г</td><td class="accent-cell">Фосфор, лёгкое усвоение</td></tr>
+            <tr><td>Лосось / горбуша</td><td>80–100 г</td><td>150–190</td><td>18–22 г</td><td class="accent-cell">Омега-3, витамин D</td></tr>
+          </tbody>
+        </table>
+        <ul style="margin-top:12px;">
+          <li>Белая рыба — 2–3 раза в неделю</li>
+          <li>Жирная — 1 раз в неделю</li>
+          <li class="warning-text">НЕ солить йодированной солью</li>
+          <li class="warning-text">НЕ жарить</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Модуль D -->
+    <div class="module-card">
+      <h3>🥕 Модуль D — Овощи и гарниры <span class="badge badge-green">Клетчатка</span></h3>
+      <div class="reason">Клетчатка для профилактики запоров. Крестоцветные — только после термообработки (снижение гойтрогенов).</div>
+      <button class="technique-toggle" onclick="toggleTechnique(this)">📖 Состав и порции</button>
+      <div class="technique-content">
+        <table class="nutrition-table">
+          <thead><tr><th>Продукт</th><th>Порция</th><th>Ккал</th><th>Акцент</th></tr></thead>
+          <tbody>
+            <tr><td>Картофель (в мундире)</td><td>200–250 г</td><td>150–190</td><td class="accent-cell">Калий, витамин C</td></tr>
+            <tr><td>Морковь / тыква / кабачок</td><td>150–200 г</td><td>40–60</td><td class="accent-cell">Бета-каротин, мягкая клетчатка</td></tr>
+            <tr><td>Брокколи / цветная капуста</td><td>150–200 г</td><td>40–55</td><td class="accent-cell">Фолаты, витамин C (только варёные/тушёные)</td></tr>
+            <tr><td>Свёкла</td><td>100–150 г</td><td>40–60</td><td class="accent-cell">Железо, фолаты, перистальтика</td></tr>
+            <tr><td>Огурцы / салат листовой</td><td>100–150 г</td><td>15–25</td><td class="accent-cell">Гидратация, лёгкость</td></tr>
+            <tr><td>Зелёный горошек</td><td>100–150 г</td><td>70–100</td><td class="accent-cell">Растительный белок, витамин K</td></tr>
+          </tbody>
+        </table>
+        <ul style="margin-top:12px;">
+          <li class="warning-text">Сырые крестоцветные (капуста, редька) — исключить</li>
+          <li>БЕЗ томатных соусов</li>
+          <li>Заправка: 1 ч.л. растительного масла</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Модуль E -->
+    <div class="module-card">
+      <h3>🥛 Модуль E — Молочные продукты и растительные жиры <span class="badge badge-green">Кальций</span></h3>
+      <div class="reason">Кальций для лактации и восстановления. Пробиотики для ЖКТ. Молочные продукты содержат йод в приемлемом для ребёнка количестве.</div>
+      <button class="technique-toggle" onclick="toggleTechnique(this)">📖 Состав и порции</button>
+      <div class="technique-content">
+        <table class="nutrition-table">
+          <thead><tr><th>Продукт</th><th>Порция</th><th>Ккал</th><th>Белок</th><th>Акцент</th></tr></thead>
+          <tbody>
+            <tr><td>Творог 5–9%</td><td>100–150 г</td><td>120–180</td><td>14–20 г</td><td class="accent-cell">Кальций, казеин</td></tr>
+            <tr><td>Кефир / ряженка 2,5%</td><td>200–250 мл</td><td>100–130</td><td>6–8 г</td><td class="accent-cell">Пробиотики, кальций</td></tr>
+            <tr><td>Сыр твёрдый (нежирный)</td><td>30–40 г</td><td>80–110</td><td>7–10 г</td><td class="accent-cell">Кальций, B12</td></tr>
+            <tr><td>Грецкие орехи / миндаль</td><td>20–30 г</td><td>120–180</td><td>4–6 г</td><td class="accent-cell">Магний, омега-3, E</td></tr>
+            <tr><td>Семена льна / подсолнечника</td><td>1–2 ст.л.</td><td>50–100</td><td>2–3 г</td><td class="accent-cell">Омега-3, клетчатка</td></tr>
+            <tr><td>Масло подсолнечное / оливковое</td><td>1–2 ч.л.</td><td>40–80</td><td>—</td><td class="accent-cell">Витамин E</td></tr>
+          </tbody>
+        </table>
+        <ul style="margin-top:12px;">
+          <li class="warning-text">Соевые продукты (тофу, соевое молоко) — не более 1–2 раз в неделю из-за гойтрогенного потенциала</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Модуль F -->
+    <div class="module-card">
+      <h3>🍎 Модуль F — Фрукты и ягоды <span class="badge badge-green">Безопасные</span></h3>
+      <div class="reason">Витамин C и антиоксиданты без кислотного раздражения мочевого пузыря. Цитрусовые полностью исключены. Приоритет — термически обработанным фруктам.</div>
+      <button class="technique-toggle" onclick="toggleTechnique(this)">📖 Состав и порции</button>
+      <div class="technique-content">
+        <table class="nutrition-table">
+          <thead><tr><th>Продукт</th><th>Порция</th><th>Ккал</th><th>Акцент</th></tr></thead>
+          <tbody>
+            <tr><td>Банан</td><td>1 шт. (~120 г)</td><td>100–110</td><td class="accent-cell">Калий, B6, энергия</td></tr>
+            <tr><td>Яблоко (запечённое)</td><td>150–200 г</td><td>70–90</td><td class="accent-cell">Пектин, витамин C</td></tr>
+            <tr><td>Груша (спелая / варёная)</td><td>150–200 г</td><td>70–90</td><td class="accent-cell">Клетчатка</td></tr>
+            <tr><td>Черешня / вишня (спелая)</td><td>100–150 г</td><td>50–75</td><td class="accent-cell">Антоцианы, железо</td></tr>
+            <tr><td>Черника / голубика</td><td>80–100 г</td><td>45–55</td><td class="accent-cell">Антиоксиданты</td></tr>
+            <tr><td>Арбуз (в сезон, умеренно)</td><td>150–200 г</td><td>40–55</td><td class="accent-cell">Гидратация, ликопин</td></tr>
+          </tbody>
+        </table>
+        <ul style="margin-top:12px;">
+          <li class="warning-text">Исключено: апельсины, лимоны, грейпфруты, мандарины, ананас, клюква, кислые яблоки, виноград в больших количествах</li>
+          <li class="warning-text">Все цитрусовые соки — под запретом</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:15px;font-weight:700;margin:20px 0 12px;">📋 Пример сборки рациона на 1 день (~2200 ккал)</h3>
+    <div class="exercise-card">
+      <h3>Меню-конструктор <span class="badge badge-green">Сбалансировано</span></h3>
+      <div class="dose">5–6 приёмов пищи • 2–2,5 л жидкости</div>
+      <button class="technique-toggle" onclick="toggleTechnique(this)">📖 Расписание приёмов</button>
+      <div class="technique-content">
+        <div class="meal-timeline">
+          <div class="meal-item">
+            <div class="meal-time">08:00</div>
+            <div class="meal-info">
+              <div class="meal-title">Завтрак</div>
+              <div class="meal-desc">Овсянка на воде 60 г + паровой омлет из 2 яиц + 1 банан + травяной чай (ромашка)</div>
+            </div>
+            <div class="meal-kcal">~420 ккал</div>
+          </div>
+          <div class="meal-item">
+            <div class="meal-time">10:30</div>
+            <div class="meal-info">
+              <div class="meal-title">Перекус</div>
+              <div class="meal-desc">Кефир 2,5% — 250 мл + грецкие орехи 20 г</div>
+            </div>
+            <div class="meal-kcal">~230 ккал</div>
+          </div>
+          <div class="meal-item">
+            <div class="meal-time">13:00</div>
+            <div class="meal-info">
+              <div class="meal-title">Обед</div>
+              <div class="meal-desc">Суп-пюре из кабачка и картофеля на воде + куриная грудка запечённая 120 г + тушёная морковь и цветная капуста 200 г + 1 ч.л. оливкового масла</div>
+            </div>
+            <div class="meal-kcal">~520 ккал</div>
+          </div>
+          <div class="meal-item">
+            <div class="meal-time">16:00</div>
+            <div class="meal-info">
+              <div class="meal-title">Полдник</div>
+              <div class="meal-desc">Творог 5% — 150 г + запечённое яблоко 1 шт. + корица</div>
+            </div>
+            <div class="meal-kcal">~280 ккал</div>
+          </div>
+          <div class="meal-item">
+            <div class="meal-time">19:00</div>
+            <div class="meal-info">
+              <div class="meal-title">Ужин</div>
+              <div class="meal-desc">Паровые котлеты из минтая 120 г + картофель в мундире 200 г + огурец 100 г + укроп</div>
+            </div>
+            <div class="meal-kcal">~380 ккал</div>
+          </div>
+          <div class="meal-item">
+            <div class="meal-time">21:30</div>
+            <div class="meal-info">
+              <div class="meal-title">Вечер</div>
+              <div class="meal-desc">Ряженка 2,5% — 200 мл + 1 ч.л. семян льна</div>
+            </div>
+            <div class="meal-kcal">~130 ккал</div>
+          </div>
+        </div>
+        <div class="meal-summary">
+          <div><div class="val">~2200</div><div class="lbl">ккал</div></div>
+          <div><div class="val">~115 г</div><div class="lbl">Белок</div></div>
+          <div><div class="val">~65 г</div><div class="lbl">Жиры</div></div>
+          <div><div class="val">~280 г</div><div class="lbl">Углеводы</div></div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:15px;font-weight:700;margin:20px 0 12px;">💧 Разрешённые напитки</h3>
+    <div class="drink-list">
+      <div class="drink-item">
+        <div>
+          <div class="name">💧 Вода негазированная</div>
+          <div class="note">Основа гидратации. Комнатной температуры.</div>
+        </div>
+        <div class="vol">1,5–2 л</div>
+      </div>
+      <div class="drink-item">
+        <div>
+          <div class="name">🌿 Травяной чай (ромашка, мята, мелисса)</div>
+          <div class="note">Без кофеина. Не на ночь (мочегонное).</div>
+        </div>
+        <div class="vol">2–3 чашки</div>
+      </div>
+      <div class="drink-item">
+        <div>
+          <div class="name">🍎 Компот из сухофруктов (без сахара)</div>
+          <div class="note">Чернослив, курага, яблоки.</div>
+        </div>
+        <div class="vol">1–2 стакана</div>
+      </div>
+      <div class="drink-item">
+        <div>
+          <div class="name">🥛 Кефир / ряженка</div>
+          <div class="note">Как перекус. Не позднее 21:30.</div>
+        </div>
+        <div class="vol">200–250 мл</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:15px;font-weight:700;margin:20px 0 12px;">🚨 Красные флаги питания</h3>
+    <div class="red-flag"><div class="flag-icon">!</div><div><h4>Усиление сердцебиения, тремор, потливость после еды</h4><p>Возможная причина: скрытый йод в продукте, избыток стимуляторов. → Эндокринолог, пересмотр рациона.</p></div></div>
+    <div class="red-flag"><div class="flag-icon">!</div><div><h4>Усиление недержания, частые позывы, жжение при мочеиспускании</h4><p>Возможная причина: попадание раздражителя (кислота, кофеин, специи). → Урогинеколог, ведение дневника питания.</p></div></div>
+    <div class="red-flag"><div class="flag-icon">!</div><div><h4>Сыпь, диарея, беспокойство ребёнка после кормления</h4><p>Возможная причина: аллерген в рационе матери. → Педиатр, исключение продукта на 2 недели.</p></div></div>
+    <div class="red-flag"><div class="flag-icon">!</div><div><h4>Резкая потеря веса (>2 кг/неделю) при достаточном питании</h4><p>Возможная причина: декомпенсация гипертиреоза, катаболизм. → Эндокринолог срочно.</p></div></div>
+    <div class="red-flag"><div class="flag-icon">!</div><div><h4>Снижение лактации при достаточном питье и калораже</h4><p>Возможная причина: стресс, недосып, тиреотоксикоз. → Гинеколог, эндокринолог.</p></div></div>
+
+    <div class="conditions-box">
+      <h4>⚠️ Обязательные условия</h4>
+      <ul>
+        <li>Данный конструктор не заменяет консультацию эндокринолога и диетолога</li>
+        <li>Контроль ТТГ, свТ4, свТ3 каждые 4–6 недель. Коррекция рациона по результатам</li>
+        <li>При назначении тиреостатиков — пересмотр йодного баланса с врачом</li>
+        <li>Приём витаминов для кормящих (без йода или с минимальной дозой ≤150 мкг) — по назначению врача</li>
+        <li>Вести дневник питания 2 недели для выявления индивидуальных триггеров недержания</li>
+      </ul>
+    </div>
+
+    <div class="sources-box">
+      <strong>Источники блока «Питание»:</strong> ATA Guidelines 2017 • ACOG 2020 • ВОЗ/ЮНИСЕФ по лактации • КР РФ «Послеродовая реабилитация» • Cochrane Review 2019 • NICE Guidelines: Urinary Incontinence • European Thyroid Association 2023
+    </div>
+  </div>
+
   <div class="footer">
     <p>Источники: ACOG 2020 • Mottola 2018 • Cochrane 2018/2019 • КР РФ 2016 • ATA 2017</p>
     <p style="margin-top:8px;">⚠️ Не заменяет консультацию врача</p>
@@ -692,7 +1129,7 @@ function toggleTechnique(btn) {
   const content = btn.nextElementSibling;
   content.classList.toggle('visible');
   btn.classList.toggle('active');
-  btn.innerHTML = content.classList.contains('visible') ? '📖 Скрыть технику' : '📖 Техника выполнения';
+  btn.innerHTML = content.classList.contains('visible') ? '📖 Скрыть' : '📖 Подробнее';
 }
 </script>
 </body>
